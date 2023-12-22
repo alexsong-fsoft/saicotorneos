@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ec">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="/Scripts/spat/img/logo/{{compania.param1.images.ico}}" id="favicon">
+
+    {{> head}}
+
+	<title>{{compania.ciaalias}}</title>
+  </head>
+
+
+  <body class="delegaciones-list">
+		
+	<!-- Navbar -->
+	{{> navbar params = compania.param1 }}
+	
+	<!-- Main title -->
+	<div class="main-title info-title container container-small">
+		<div class="image">
+			<img id="img_delega" src="/api/delegacion/logo/{{delegacion.logo}}"/>
+		</div>
+		<div class="content">
+			<h1 fs-name="deleganombre">{{delegacion.deleganombre}}</h1>
+			<h2 fs-name="delegaciudad">{{delegacion.delegaciudad}}</h2>
+		</div>
+	</div>
+
+	<!-- Section Delegaciones -->
+	<div class="delegacion-content container">
+		<div id="delegacion-nomina" class="list">
+			<table id="tblNomina" class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th></th>
+					<th>Nombres</th>
+					<th>Edad</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
+					{{#each competidores}}
+						<tr>
+							<td><div class="img-wrapper"><img src="/api/competidor/perfil/{{this.perfil}}" style="max-height:50px"/></div></td>
+							<td> {{this.compnombrecompleto}} </td>
+							<td> {{this.compedad}} </td>
+							<td><button class="nomina-btn" info="info"><span class="icon-arrow-right-circle"></span></button></td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		<div id="nomina-info" class="info">
+			<button id="nomina-close"><span class="icon-x"></span></button>
+			<div class="nomina-img"><img id="img_portada2" src="/api/competidor/perfil/0" style="max-width:150px;"/></div>
+			
+			<div class="content">
+				<h2 fs-name="compapellido"></h2>
+				<h3 fs-name="compnombre"></h3>
+				<ul class="detail-list">
+				    <li><span class="icon-star"></span><b>Sexo</b><div fs-name="compsexo"></div></li>
+				    <li><span class="icon-calendar1"></span><b>Fec. Nac.</b><div fs-name="compfecnac"></div></li>
+				    <li><span class="icon-calendar1"></span><b>Edad</b><div fs-name="compedad"></div></li>
+                    <li><span class="icon-star"></span><b>Grado</b><div fs-name="compinstruccion"></div></li>
+				    <li><span class="icon-star"></span><b>Delegación</b><div fs-name="deleganombre"></div></li>
+				    <li><span class="icon-location"></span><b>Ciudad</b><div fs-name="compciudad"></div></li>
+				    <li><span class="icon-location"></span><b>Provincia</b><div fs-name="compprov"></div></li>
+				</ul>
+                <ul id="records_ficha" class="detail-list">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- /sectionDelegaciones -->
+
+	<!-- Modal Login -->
+	{{> formLogin}}
+
+	<!-- Modal Registro -->
+	{{> formRegister}}
+
+	<!-- Footer -->
+	{{> footer params = compania.param1}}
+    
+  </body>
+</html>

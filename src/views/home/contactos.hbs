@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ec">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="/Scripts/spat/img/logo/{{compania.param1.images.ico}}" id="favicon">
+
+    {{> head}}
+
+	<title>{{compania.ciaalias}}</title>
+	
+  </head>
+
+  <body class="contactos">
+	
+	<!-- Navbar -->
+	{{> navbar params = compania.param1 }}
+
+	<!-- Section Contactos -->
+	{{> contact params = compania.param1}}
+	
+	<!-- Modal Login -->
+	{{> formLogin}}
+
+	<!-- Modal Registro -->
+	{{> formRegister}}
+
+	<!-- Footer -->
+	{{> footer params = compania.param1}}
+
+  </body>
+</html>

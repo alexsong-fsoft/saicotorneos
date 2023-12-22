@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <img src="/Scripts/spat/img/logo/{{compania.param1.images.logo1}}" alt="" />
+            <h2>
+                <b>{{params.title}}</b>
+                <i>{{params.subtitle}}</i>
+            </h2>
+        </a>
+        <div class="collapse navbar-collapse" id="main-nav">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link home" href="/">Inicio</a>
+            <a class="nav-item nav-link eventos" href="/eventosAll">Eventos</a>
+            <a class="nav-item nav-link noticias" href="/noticiasAll">Noticas</a>
+            <a class="nav-item nav-link delegaciones-list" href="/delegacionesAll">Delegaciones</a>
+            <a class="nav-item nav-link contactos" href="/contactos">Contactos</a>
+        </div>
+        <div class="nav-item-right">
+            <!-- <button type="button" class="btn btn-link btn-registro" data-toggle="modal" data-target="#modal-login">Regístrate</button> -->
+            <button type="button" class="btn btn-primary btn-login" data-toggle="modal" data-target="#modal-login">Inicia Sesión</button>
+        </div>
+        </div>
+    </div>
+</nav>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        const bodyClass = $('body').attr('class');
+        const navSelector = 'div.navbar-nav a.' + bodyClass;
+        $(navSelector).toggleClass('active');
+    });
+</script>

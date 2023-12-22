@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ec">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="/Scripts/spat/img/logo/{{compania.param1.images.ico}}" id="favicon">
+
+    {{> head}}
+
+	<title>{{compania.ciaalias}}</title>
+  </head>
+
+
+  <body class="eventos">
+	
+	<!-- Navbar -->
+	{{> navbar params = compania.param1 }}
+	
+	<!-- Main title -->
+	<div class="main-title container container-small">
+		<h1><b>CAPACITACIONES – TORNEOS</b></h1>
+		<h2>{{compania.param1.msj_event}}</h2>
+	</div>
+
+	<!-- Section Events -->
+	<div class="event-content container container-medium">
+		<div class="event-img">
+			<img id="img_portada" src="/api/torneo/portada/{{torneo.portada}}" style="width:350px;height:500px"/>
+		</div>
+		<div class="event-description">
+            {{!-- <div class="fb-share-button" data-href="http://taekwondoecuador.com/Torneos/@(Model.ciacodigo)@(Model.loccodigo)@(Model.torneoid)" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" class="fb-xfbml-parse-ignore">Compartir</a></div> --}}
+			<h1>{{torneo.torneonombre}}</h1>
+			<div class="content">
+				<h4>Resumen</h4>
+				<p>{{torneo.torneodescri}}</p>
+				<ul class="detail-list">
+				<li><span class="icon-calendar1"></span><b>Fecha del evento:</b>{{torneo.torneofecinicio}}</li>
+				<li><span class="icon-calendar1"></span><b>Inscripciones:</b>{{torneo.torneofecmaxins}}</li>
+				<li><span class="icon-location"></span><b>Dirección:</b>{{torneo.torneodireccion}}</li>
+				<li><span class="icon-star"></span><b>Organiza:</b>{{torneo.torneoorganiza}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!-- tabs -->
+	<div class="container">
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item">
+			    <a class="nav-link active" id="delegaciones-tab" data-toggle="tab" href="#delegaciones" role="tab" aria-controls="delegaciones" aria-selected="true">Delegacion/Participantes</a>
+			</li>
+			<li class="nav-item">
+			    <a class="nav-link" id="grupo-tab" data-toggle="tab" href="#grupo" role="tab" aria-controls="grupo" aria-selected="false">Grupos</a>
+			</li>
+			<li class="nav-item">
+			    <a class="nav-link" id="medallero-tab" data-toggle="tab" href="#medallero" role="tab" aria-controls="medallero" aria-selected="false">Medallero General</a>
+			</li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane fade show active" id="delegaciones" role="tabpanel" aria-labelledby="delegaciones-tab">
+				<table id="tblTorneoDelegacion" class="table table-striped table-hover table-center">
+					<thead>
+					<tr>
+						<th>Delegación</th>
+						<th># Registrados</th>
+						<th>Opciones</th>
+					</tr>
+					</thead>
+					<tbody>
+						{{#each resumenByDelegacion}}
+							<tr>
+								<td> {{this.deleganombre}} </td>
+								<td> {{this.registrados}} </td>
+								<td><button class="btn_rptdelega" info="info"><span class="icon-printer"></span> Imprimir Listado</button></td>
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+
+			<div class="tab-pane fade" id="grupo" role="tabpanel" aria-labelledby="grupo-tab">
+				<div class="scroll-content">
+				<table id="tblTorneoCombate" class="table table-striped table-hover">
+					<thead>
+					    <tr>
+						    <th>Modalidad</th>
+						    <th>Sexo</th>
+						    <th>Categoría</th>
+						    <th>Nivel</th>
+						    <th>División</th>
+						    <th># Registrados</th>
+					    </tr>
+					</thead>
+					<tbody>
+						{{#each resumenByModalidad}}
+							<tr>
+								<td> {{this.modalidaddescri}} </td>
+								<td> {{this.compsexo}} </td>
+								<td> {{this.categoriadescri}} </td>
+								<td> {{this.niveldescri}} </td>
+								<td> {{this.divisiondescri}} </td>
+								<td> {{this.registrados}} </td>
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+				</div>
+			</div>
+			
+			<div class="tab-pane fade" id="medallero" role="tabpanel" aria-labelledby="medallero-tab">
+				<div class="scroll-content">
+				<table id="tblMedallero" class="table table-striped table-hover medallist">
+					<thead>
+					<tr>
+						<th>Ranking</th>
+						<th>Delegación</th>
+						<th>Oro</th>
+						<th>Plata</th>
+						<th>Bronce</th>
+						<th>Total</th>
+					</tr>
+					</thead>
+					<tbody>
+						{{#each resumenByPosicion}}
+							<tr>
+								<td style="text-align:center"> {{this.lugar}} </td>
+								<td><img src="/api/delegacion/logo/0" title="" style="width: 30px; height: 30px; margin-right:10px;"> {{this.deleganombre}} </td>
+								<td class="total"> {{this.oro}} </td>
+								<td class="total"> {{this.plata}} </td>
+								<td class="total"> {{this.bronce}} </td>
+								<td class="total"> {{this.puntos}} </td>
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /tabs -->
+	
+
+
+	<!-- Modal Login -->
+	{{> formLogin}}
+
+	<!-- Modal Registro -->
+	{{> formRegister}}
+
+	<!-- Footer -->
+	{{> footer params = compania.param1}}
+	
+  </body>
+</html>

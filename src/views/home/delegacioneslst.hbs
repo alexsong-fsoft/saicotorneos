@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ec">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="/Scripts/spat/img/logo/{{compania.param1.images.ico}}" id="favicon">
+
+    {{> head}}
+
+	<title>{{compania.ciaalias}}</title>
+  </head>
+
+
+  <body class="delegaciones-list">
+		
+	<!-- Navbar -->
+	{{> navbar params = compania.param1 }}
+	
+	<!-- Main title -->
+	<div class="main-title container container-small">
+		<h1><b>CLUBES – MAESTROS - INSTRUCTORES – ALUMNOS ASOCIADOS</b></h1>
+		<h2>{{compania.param1.msj_teams}}</h2>
+	</div>
+
+	<!-- Section Delegaciones -->
+	<div class="section-delegaciones container">
+	    <div class="delegaciones-list">
+			{{!-- {{#times 10}}
+				<span>{{this}}</span>
+			{{/times}}
+			{{#for 0 10 2}}
+				<span>{{this}}</span>
+			{{/for}} --}}
+			{{#each delegaciones}}
+				<div class="item">
+					<a href="/delegaciones/{{this.delegaid}}">
+					<div class="img-wrapper"><img src="/api/delegacion/logo/{{this.logo}}" style="max-width:180px; max-height:190px;"/></div>
+					<div class="content">
+						<h4>{{this.deleganombre}}</h4>
+						<ul class="inline-icnlist">
+						<li><span class="icon-map-pin"></span><b>{{this.delegaciudad}}</li>
+						<li><span class="icon-image"></span><b>{{this.numDeportistas}}</b></li>
+						</ul>
+					</div>
+					<div class="more-info"><span class=""></span>M&aacute;s info</div>
+					</a>
+				</div>
+			{{/each}}
+	    </div>
+	</div>
+	
+	<!-- Pagination -->
+	<nav aria-label="Page navigation example">
+	<ul class="pagination justify-content-center">
+		<li class="page-item"><a class="page-link" onclick="Forms.FrmHomeLogin.functions.plusSlides(-1)" tabindex="-1">Previous</a></li>
+		<li class="page-item"><a class="page-link" onclick="Forms.FrmHomeLogin.functions.showSlides(1)">1</a></li>
+	</ul>
+	</nav>
+	
+	<!-- Modal Login -->
+	{{> formLogin}}
+
+	<!-- Modal Registro -->
+	{{> formRegister}}
+
+	<!-- Footer -->
+	{{> footer params = compania.param1}}
+    
+  </body>
+</html>

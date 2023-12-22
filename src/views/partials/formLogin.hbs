@@ -1,0 +1,99 @@
+<div class="modal fade modal-form" id="modal-login" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="icon-x"></span>
+            </button>
+
+            <div id="form-login">
+                <div class="modal-body">
+                    <h2>Inicia Sesión</h2>
+                    <p></p>
+                    <form id="uploadForm">
+                        <ul class="form-list">
+                            <li>
+                                <label for="login-email">Usuario</label>
+                                <input type="text" id="login-user" name="user" placeholder="" maxlength="15" />
+                            </li>
+                            <li>
+                                <label for="login-password">Contraseña</label>
+                                <input type="password" id="login-password" name="password" placeholder="" maxlength="15" />
+                            </li>
+                            <li class="btn-submit">
+                                <!-- <input type="submit" value="Inicia Sesión"> -->
+                                <button class="btn btn-app btn-info" type="button" id="cmdLogin">
+                                    <span style="font-weight:bold" class="">Inicia Sesión</span>
+                                </button>
+                                <span id="lblMensaje" class="label txt-color-white"></span>
+                            </li>
+                        </ul>
+                    </form>
+                    <p>¿Aún no tienes un usuario?
+                        <button class="btn btn-link btn-registro-modal" data-dismiss="modal" data-toggle="modal" data-target="#modal-register">Registra tu Delegación aquí</button>
+                    </p>
+                </div>
+                <div class="modal-bg"><img src="" /></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        // TODO
+        $('#form-login #cmdLogin').on('click', function (event) {
+            // window.history.pushState('Index', 'Login', '/');
+            /*
+            var formData = new FormData();
+            if ($('#form-login #login-user').val() != "") formData.append("user", $('#form-login #login-user').val());
+            if ($('#form-login #login-password').val() != "") formData.append("password", $('#form-login #login-password').val());
+            formData.append("remember_me", false);
+            event.stopPropagation();
+            event.preventDefault();
+            if (!formData.has('user') || !formData.has('password')) {
+                //Spat.Messages.show('warning', $('#form-login #lblMensaje')[0], Spat.Lang.messages.complete_all_fields);
+                console.log('complete todos los campos');
+                return false;
+            }
+            */
+            // Spat.Messages.show('process', $('#frmLogin #lblMensaje')[0], Spat.Lang.messages.validating_user);
+            let formData = {
+                password : $('#form-login #login-password').val(),
+                user : $('#form-login #login-user').val(),
+                ciacodigo : '03'
+            };
+            $.ajax({
+                url: '/api/login',
+                data: JSON.stringify(formData),
+                processData: false,
+                contentType: 'application/json',
+                type: 'POST',
+                success: function (data) {
+                    if (data == false) {
+                        // Spat.Messages.show('warning', $('#form-login #lblMensaje')[0], Spat.Lang.messages.invalid_user);
+                        console.log('complete todos los campos');
+                    } else {
+                        window.location.href = "/desktop";
+                        /*
+                        $('html').remove(); 
+                        var html = Spat.getRequest('/Home/Index'); 
+                        document.open(); 
+                        document.write(html); 
+                        document.close();
+                        */
+                    }
+                }
+            });
+        });
+    
+    
+        
+
+
+    
+    });
+</script>
